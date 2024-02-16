@@ -8,6 +8,77 @@
       "links": {
         "back to high-level roadmap": "index.html"
       }
+    },
+    "corpses": {
+      "dependencies": ["start"],
+      "display-name": "Ragdoll Corpses",
+      "blurb": "Players go limp upon death and become a corpse which doesn't get removed. Corpses decay into skeletons after enough time."
+    },
+    "frisking": {
+      "dependencies": ["corpses", "buy-items"],
+      "display-name": "Frisking/Inventory Inspections",
+      "blurb": "A Player can view another Player's backpack contents if they consent (via GUI). Players can view any corpse's backpack contents, which are preserved."
+    },
+    "buy-items": {
+      "dependencies": ["start"],
+      "display-name": "Buy Items From Vendors",
+      "blurb": "Players can buy items from an NPC vendor, via ROBLOX dialogue system. Some items stack. Players can hold a limited number of inventory items. Team-specific vendors (such as black-market dealers) have different dialogue for different teams."
+    },
+    "pick-up-items": {
+      "dependencies": ["buy-items"],
+      "display-name": "Pick Up Items On The Ground",
+      "blurb": "Players can pick up items on the ground via proximity prompt."
+    },
+    "drop-items": {
+      "dependencies": ["pick-up-items"],
+      "display-name": "Drop Items On The Ground",
+      "blurb": "Players can drop inventory items on the ground in front of them. If item is stackable, they specify how many they want to drop -- it defaults to half their amt, and it drops as one item (container)."
+    },
+
+    "hand-drills": {
+      "dependencies": ["buy-items"],
+      "display-name": "Hand Drills",
+      "blurb": "Players can drill rock with a hand tool. The drill breaks rocks into smaller rocks until they are pulverized."
+    },
+    "gold": {
+      "dependencies": ["hand-drills", "pick-up-items"],
+      "display-name": "There's Gold In These Hills",
+      "blurb": "Gold is buried in the rock and is a (infinitely?) stackable inventory item that players pick up (but not through walls!)"
+    },
+    "guard-recruitment": {
+      "dependencies": ["basic-map"],
+      "display-name": "Join the Guards",
+      "blurb": "Players can join the Guards team by talking to a Recruiter NPC. Players can't leave the Guards (yet)."
+    },
+    "mine-checkpoint": {
+      "dependencies": ["guard-recruitment", "hand-drills"],
+      "display-name": "The Mine Is Guarded",
+      "blurb": "Guards man a checkpoint at the mouth of the mine. Guards must enforce the law that drills stay inside the mine at all times."
+    },
+    "miner-taxes": {
+      "dependencies": ["gold", "mine-checkpoint"],
+      "display-name": "Miners Get Taxed",
+      "blurb": "After "
+    },
+    "sign-on-bonuses": {
+      "dependencies": ["guard-recruitment", "gold"],
+      "display-name": "Guard Sign-On Bonuses",
+      "blurb": "Players earn a bonus for joining if there aren't a lot of guards, or pay an application fee if there are a lot of guards. Bonuses/fees vary by the proportion of guards to miners."
+    },
+    "alert-the-guards": {
+      "dependencies": ["guard-recruitment"],
+      "display-name": "Alert The Guards",
+      "blurb": "Miners can alert the guards to illegal activity (after a short cooldown)."
+    },
+    "god-complex": {
+      "dependencies": ["miner-taxes"],
+      "display-name": "Guards Have A God Complex",
+      "blurb": "Guards can reward players by giving them gold, or punish them by fining them randomly (with a limit). This gold comes from/goes to the Guard Treasury"
+    },
+    "basic-map": {
+      "dependencies": ["start"],
+      "display-name": "Basic Map Layout",
+      "blurb": "A mine, a checkpoint into/out of the mine, houses, a marketplace with vendors, black market dealers, and gov't-only weapon suppliers, an imperial palace with a jail; spawns/teams for guards & miners."
     }
   }
 }
