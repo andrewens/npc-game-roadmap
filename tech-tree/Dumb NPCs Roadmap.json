@@ -1,0 +1,13 @@
+{
+  "misc": {
+    "start": {
+      "dependencies": [],
+      "display-name": "Begin Implementing Dumb NPCs",
+      "blurb": "",
+      "completed": "2-16-24",
+      "links": {
+        "back to high-level roadmap": "index.html"
+      }
+    }
+  }
+}

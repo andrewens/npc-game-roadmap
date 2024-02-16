@@ -2,7 +2,7 @@
   "misc": {
     "start": {
       "dependencies": [],
-      "display-name": "Begin Programming",
+      "display-name": "Start",
       "blurb": "",
       "completed": "2-16-24"
     },
@@ -11,7 +11,7 @@
       "display-name": "Create Core Gameplay for Humans Only",
       "blurb": "Two teams: Miners & Guards; miners dig for gold, which guards heavily tax. Miners can live quietly or steal gold and buy weapons on the black market to cause chaos and even overthrow the guards. Guards need miners' gold to buy supplies. Guards put miners in jail or fine them if they break laws.",
       "links": {
-        "Sub-graph": "sub-graphs/core-gameplay.html"
+        "Sub-graph": "core-gameplay.html"
       }
     },
     "dumb-npcs": {
@@ -19,7 +19,7 @@
       "display-name": "Dumb NPC Bots Play with Humans",
       "blurb": "Minecraft Zombie-level intelligent bots can interact with others/the game in any way a human player can",
       "links": {
-        "Sub-graph": "sub-graphs/dumb-npcs.html"
+        "Sub-graph": "dumb-npcs.html"
       }
     },
     "smart-npcs": {
@@ -27,7 +27,7 @@
       "display-name": "Smart AI NPC Bots Play with Humans",
       "blurb": "Integrate xGaming's AI web API to create bots that make goal-driven and emotional decisions, manipulate players, and believably play the game as free agents",
       "links": {
-        "Sub-graph": "sub-graphs/smart-npcs.html"
+        "Sub-graph": "smart-npcs.html"
       }
     },
     "leadership": {
@@ -35,7 +35,7 @@
       "display-name": "Local Leadership",
       "blurb": "Players can become leaders if they demonstrate game competency. Leaders can give commands to other players, who earn a monetary or social reward for dutifully enacting. This allows increasing the size of the map & number of players, but requires strategy.",
       "links": {
-        "Sub-graph": "sub-graphs/local-leadership.html"
+        "Sub-graph": "local-leadership.html"
       }
     },
     "multiple-districts": {
@@ -43,7 +43,7 @@
       "display-name": "Multiple Districts",
       "blurb": "There are multiple regions, each with different leadership and a different level of chaos, allowing criminals to become fugitives and rebel forces to become conquering armies. Also an elite imperial military",
       "links": {
-        "Sub-graph": "sub-graphs/multiple-districts.html"
+        "Sub-graph": "multiple-districts.html"
       }
     }
   }
