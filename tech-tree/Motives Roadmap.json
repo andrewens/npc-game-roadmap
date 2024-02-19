@@ -1,0 +1,73 @@
+{
+  "misc": {
+    "start": {
+      "dependencies": [],
+      "display-name": "Start",
+      "blurb": "",
+      "completed": "2-16-24"
+    },
+    "escape-the-mine": {
+      "dependencies": ["start"],
+      "display-name": "Workers Can (illegally) Escape The Mines (Motive #1)",
+      "blurb": "Miners are given drills upon entering the mine, ostensibly for mining gold. Their real goal is to dig a path out of the mine and escape without getting caught. Guards want to arrest anyone trying to escape, and maximize gold profits.",
+      "links": {
+        "click here": "core-gameplay.html"
+      }
+    },
+    "overthrow-the-guards": {
+        "dependencies": ["escape-the-mine"],
+        "display-name": "Workers Can Overthrow The Guards (Motive #2)",
+        "blurb": "Miners can overthrow the guards by acquiring guns. Miners can escape the mine with their drills to dig into the market and steal guns. Miners can hide guns/drills/gold in their houses. Guards that don't want to be guards anymore (is that a strong enough motive?) can buy extra guns to sell to miners. It is illegal for guards to give guns away. Guards can shoot any miner with a gun. Traitor guards are guaranteed not to be harmed by rebels in the revolution."
+    },
+    "social-status": {
+        "dependencies": ["overthrow-the-guards"],
+        "display-name": "Players Can Buy Social Status/Leadership (Motive #3)",
+        "blurb": "Miners can spend (a lot of) gold to become merchants, and hire people to work for them and make a lot of money and buy nice clothes and houses. Guards can buy a promotion to squad leader and give orders to subordinates. Guards are rewarded/punished for following orders or not, no matter how stupid they are. (here's a motive for overthrowing the government)"
+    },
+    "imperial-districts": {
+        "dependencies": ["social-status"],
+        "display-name": "Players Can Control Or Overthrow An Entire Empire (Motive #4)",
+        "blurb": "Rebels that take control of their district can launch a revolution in the rest of the empire. Guards can work their way up to becoming the dictator himself by competing and winning with other district commanders. Guards have four ranks: guard, squad leader, district commander, dictator. Workers have no official ranks, but can be: miners/workers, merchants, rebels, & rebel leaders."
+    },
+    "patrolling-npcs": {
+        "dependencies": ["escape-the-mine"],
+        "display-name": "Dumb NPCs Can Patrol And Do One Action",
+        "blurb": "NPCs can be guards or miners. Guard NPCs patrol simple paths, scanning for illegal activities, which they punish with arrests. Miner NPCs mine for gold, and randomly decide to dig escape tunnels when guards aren't near. Nark (annoying miner) NPCs walk in random paths and alert the guards to any illegal activity near them."
+    },
+    "team-player-npcs": {
+        "dependencies": ["overthrow-the-guards", "patrolling-npcs"],
+        "display-name": "Dumb NPCs Are Good Team Players",
+        "blurb": "Traitorous Guards can sell weapons to miner NPCs, who will distribute them to other players. The decision to revolt is left to human players. During conflict, both armed miner and guard NPCs will shoot armed enemies. Miners can also ask Miner NPCs to alert them if guards come while they are digging illegally. Guard NPCs can automatically man the mine entrance checkpoint & search miners' inventories."
+    },
+    "leader-npcs": {
+        "dependencies": ["social-status", "team-player-npcs"],
+        "display-name": "Dumb NPC Leaders Give Orders",
+        "blurb": "In the absence of human leaders, NPC Guard Squad Leaders and NPC Rebel Leaders will give orders to human players and other NPCs. NPC Squad Leaders will give patrolling orders dependent on recent crime locations, and NPC Rebel Leaders will ask miner players/NPCs to acquire guns, dig exit tunnels, take strategic attack positions, and eventually attack the guards."
+    },
+    "dictator-npc": {
+        "dependencies": ["imperial-districts", "leader-npcs"],
+        "display-name": "Dumb Dictator NPC Rules The Empire",
+        "blurb": "In the absence of a human dictator, an NPC will decide how to allocate funds to districts, where to send the Imperial Military, and which squad leaders to promote to district commanders, based on reports from Guard Leaders, to avoid being assassinated by a commander or toppled by a rebel force. Rebel NPC leaders are still just squad leaders, but capable of giving/receiving guerilla warfare orders from human rebel leaders."
+    },
+    "patrolling-ai": {
+        "dependencies": ["patrolling-npcs"],
+        "display-name": "xGaming AI for Patrolling NPCs",
+        "blurb": "..."
+    },
+    "team-player-ai": {
+        "dependencies": ["team-player-npcs", "patrolling-ai"],
+        "display-name": "xGaming AI for Team Player NPCs",
+        "blurb": "..."
+    },
+    "leader-ai": {
+        "dependencies": ["leader-npcs", "team-player-ai"],
+        "display-name": "xGaming AI for Leader NPCs",
+        "blurb": "..."
+    },
+    "dictator-ai": {
+        "dependencies": ["dictator-npc", "leader-ai"],
+        "display-name": "xGaming AI for Dictator NPCs",
+        "blurb": "(and possibly rebel leaders as well)"
+    }
+  }
+}

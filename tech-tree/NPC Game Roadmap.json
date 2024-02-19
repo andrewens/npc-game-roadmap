@@ -2,69 +2,146 @@
   "misc": {
     "start": {
       "dependencies": [],
-      "display-name": "Start",
+      "display-name": "Begin Implementing Core Gameplay",
       "blurb": "",
-      "completed": "2-16-24"
+      "completed": "2-18-24",
+      "links": {
+        "back to high-level roadmap": "index.html"
+      }
     },
-    "escape-the-mine": {
+    "map-layout": {
       "dependencies": ["start"],
-      "display-name": "Workers Can (illegally) Escape The Mines (Motive #1)",
-      "blurb": "Miners are given drills upon entering the mine, ostensibly for mining gold. Their real goal is to dig a path out of the mine and escape without getting caught. Guards want to arrest anyone trying to escape, and maximize gold profits."
+      "display-name": "Map Layout",
+      "blurb": "Mining Area, Guard Checkpoint, Worker Houses, Marketplace. The ground consists of a 3d block system, whereas houses are made of walls, floors, doors, windows, stairs. Guard Checkpoint has a gate & Guards-only interior. Marketplace is a bunch of open stalls and stacks of crates."
     },
-    "overthrow-the-guards": {
-        "dependencies": ["escape-the-mine"],
-        "display-name": "Workers Can Overthrow The Guards (Motive #2)",
-        "blurb": "Miners can overthrow the guards by acquiring guns. Miners can escape the mine with their drills to dig into the market and steal guns. Miners can hide guns/drills/gold in their houses. Guards that don't want to be guards anymore (is that a strong enough motive?) can buy extra guns to sell to miners. It is illegal for guards to give guns away. Guards can shoot any miner with a gun. Traitor guards are guaranteed not to be harmed by rebels in the revolution."
+    "drills": {
+      "dependencies": ["map-layout"],
+      "display-name": "Hand Drills",
+      "blurb": "A hand drill digs through the ground, but not walls in buildings, except for specially defined weak points."
     },
-    "social-status": {
-        "dependencies": ["overthrow-the-guards"],
-        "display-name": "Players Can Buy Social Status/Leadership (Motive #3)",
-        "blurb": "Miners can spend (a lot of) gold to become merchants, and hire people to work for them and make a lot of money and buy nice clothes and houses. Guards can buy a promotion to squad leader and give orders to subordinates. Guards are rewarded/punished for following orders or not, no matter how stupid they are. (here's a motive for overthrowing the government)"
+    "team-assignment": {
+      "dependencies": ["map-layout"],
+      "display-name": "Team Assignment",
+      "blurb": "Teams are automatically assigned. Guards spawn at checkpoint, workers spawn in houses. Players can switch teams if it would still be balanced. Roughly equal number of guards as workers."
     },
-    "imperial-districts": {
-        "dependencies": ["social-status"],
-        "display-name": "Players Can Control Or Overthrow An Entire Empire (Motive #4)",
-        "blurb": "Rebels that take control of their district can launch a revolution in the rest of the empire. Guards can work their way up to becoming the dictator himself by competing and winning with other district commanders. Guards have four ranks: guard, squad leader, district commander, dictator. Workers have no official ranks, but can be: miners/workers, merchants, rebels, & rebel leaders."
+    "drill-checkout": {
+      "dependencies": ["team-assignment"],
+      "display-name": "Workers Receive Drills At Checkout",
+      "blurb": "When Workers walk into the Mine via Checkpoint, they are given a Drill. When they leave the Checkpoint, their drill is removed. Workers can dig tunnels around the checkpoint to exit the mine and keep their drill. Drills make noise that is gradually muffled by rock."
     },
-    "patrolling-npcs": {
-        "dependencies": ["escape-the-mine"],
-        "display-name": "Dumb NPCs Can Patrol And Do One Action",
-        "blurb": "NPCs can be guards or miners. Guard NPCs patrol simple paths, scanning for illegal activities, which they punish with arrests. Miner NPCs mine for gold, and randomly decide to dig escape tunnels when guards aren't near. Nark (annoying miner) NPCs walk in random paths and alert the guards to any illegal activity near them."
+    "laser-guns": {
+      "dependencies": ["drill-checkout"],
+      "display-name": "Guards Have Laser Guns",
+      "blurb": "Guards are given laser guns upon spawning. Laser guns only hurt Workers that have a drill outside of the Mine. It takes three shots to kill a Worker."
     },
-    "team-player-npcs": {
-        "dependencies": ["overthrow-the-guards", "patrolling-npcs"],
-        "display-name": "Dumb NPCs Are Good Team Players",
-        "blurb": "Traitorous Guards can sell weapons to miner NPCs, who will distribute them to other players. The decision to revolt is left to human players. During conflict, both armed miner and guard NPCs will shoot armed enemies. Miners can also ask Miner NPCs to alert them if guards come while they are digging illegally. Guard NPCs can automatically man the mine entrance checkpoint & search miners' inventories."
+    "gold": {
+      "dependencies": ["drills"],
+      "display-name": "Workers Can Mine Gold",
+      "blurb": "Gold is buried in the rock. Workers can mine gold to put it in their inventory, where it stacks. Workers' gold profits are taxed when they leave the mine via checkpoint. Taxed gold is distributed evenly among Guards."
     },
-    "leader-npcs": {
-        "dependencies": ["social-status", "team-player-npcs"],
-        "display-name": "Dumb NPC Leaders Give Orders",
-        "blurb": "In the absence of human leaders, NPC Guard Squad Leaders and NPC Rebel Leaders will give orders to human players and other NPCs. NPC Squad Leaders will give patrolling orders dependent on recent crime locations, and NPC Rebel Leaders will ask miner players/NPCs to acquire guns, dig exit tunnels, take strategic attack positions, and eventually attack the guards."
+    "worker-housing": {
+      "dependencies": ["gold", "lockers"],
+      "display-name": "Workers Can Buy/Sell Houses",
+      "blurb": "There are more houses in the map than possible workers. Workers can buy an unoccupied house with gold. Guards can't buy/sell houses. Workers begin the game by living on the street. Workers can sell their house for 70% of the price they bought it with. Houses can be drilled into, via the basement. House ownership automatically comes with two key-cards. Only players with the house key-cards can open the door... but Guard key-cards can open any house door. Lockers in the house can be opened with house key-cards or guard key-cards."
     },
-    "dictator-npc": {
-        "dependencies": ["imperial-districts", "leader-npcs"],
-        "display-name": "Dumb Dictator NPC Rules The Empire",
-        "blurb": "In the absence of a human dictator, an NPC will decide how to allocate funds to districts, where to send the Imperial Military, and which squad leaders to promote to district commanders, based on reports from Guard Leaders, to avoid being assassinated by a commander or toppled by a rebel force. Rebel NPC leaders are still just squad leaders, but capable of giving/receiving guerilla warfare orders from human rebel leaders."
+    "key-cards": {
+      "dependencies": ["team-assignment"],
+      "display-name": "Key-Cards Unlock Doors For Players",
+      "blurb": "Guard Checkpoint has a room for Guards-only, with a locked door. Players with a Guard Key-Card can temporarily open that door so anyone can walk through. Guards automatically spawn with Guard Key-Cards. Workers with Guard key-cards can be legally shot."
     },
-    "patrolling-ai": {
-        "dependencies": ["patrolling-npcs"],
-        "display-name": "xGaming AI for Patrolling NPCs",
-        "blurb": "..."
+    "chests": {
+      "dependencies": ["key-cards"],
+      "display-name": "Chests Hold Items",
+      "blurb": "Drills, Gold, and Guns can be stored in Chests, distributed around the map, for anyone to use. Players can transfer items between their inventory and chests."
     },
-    "team-player-ai": {
-        "dependencies": ["team-player-npcs", "patrolling-ai"],
-        "display-name": "xGaming AI for Team Player NPCs",
-        "blurb": "..."
+    "lockers": {
+      "dependencies": ["chests"],
+      "display-name": "Lockers Are Chests That Only Open With A Key-Card",
+      "blurb": "Lockers are chests that can only be opened while holding a key-card to that locker. Guards are automatically assigned a unique locker key-card upon spawning."
     },
-    "leader-ai": {
-        "dependencies": ["leader-npcs", "team-player-ai"],
-        "display-name": "xGaming AI for Leader NPCs",
-        "blurb": "..."
+    "food": {
+      "dependencies": ["gold"],
+      "display-name": "Players Are Hungry",
+      "blurb": "Players have hunger bars that steadily tick down. Players can replenish hunger by eating food. Players can buy food from the marketplace. Food is a stackable inventory item. Players with 0 hunger will slowly lose health until they die. After eating until full, it takes some time before the hunger bar decreases. While a player is full, they replenish health if they are hurt, but this makes them hungrier faster."
     },
-    "dictator-ai": {
-        "dependencies": ["dictator-npc", "leader-ai"],
-        "display-name": "xGaming AI for Dictator NPCs",
-        "blurb": "(and possibly rebel leaders as well)"
+    "sprinting": {
+      "dependencies": ["food"],
+      "display-name": "Players Can Sprint",
+      "blurb": "Players can hold a hotkey to run fast. Sprinting decreases hunger at a faster rate. Players can only sprint with 30% hunger or more."
+    },
+    "frisking": {
+      "dependencies": ["gold", "chests"],
+      "display-name": "Guards Can Search Workers' Inventory",
+      "blurb": "Any player can ask to see the contents of another player's inventory, who then says yes/no/doesn't respond. Workers that deny Guards access to their inventory can legally be shot. Workers that say nothing to a Guard asking will default to a 'yes' after 10 secs. Workers that say nothing to a Worker asking will default to a 'no' after 10 secs. There's a 60 sec cooldown between asks per player."
+    },
+    "corpses": {
+      "dependencies": ["frisking"],
+      "display-name": "Player Inventories Stay With Their Body",
+      "blurb": "When players die, they become ragdoll corpses that don't go away. Corpses eventually decay into skeletons. Corpses can be searched, essentially making them chests that hold the deceased player's inventory. Players respawn with default items per their team, losing their gold and such."
+    },
+    "new-player-buff": {
+      "dependencies": ["corpses"],
+      "display-name": "New Players Keep Inventory Items On Death",
+      "blurb": "Within the first ten or twenty minutes of joining the game for the first time, or after three deaths, new players don't lose their inventory items when they die, and their corpses contain no items."
+    },
+    "drop-items": {
+      "dependencies": ["chests"],
+      "display-name": "Players can Drop Items On The Ground",
+      "blurb": "Players can drop items from their inventory onto the ground. Players can pick up items off the ground. Player inventory size is limited. Stackable items automatically stack. Players choose how many items from a stack to drop, defaulting to half."
+    },
+    "backpacks": {
+      "dependencies": ["drop-items"],
+      "display-name": "Backpacks Increase Inventory Capacity",
+      "blurb": "Players can buy backpacks from the market. Backpacks are portable chests that can be picked up/dropped as a non-stackable inventory item. Backpacks can only be opened while they are dropped on the ground."
+    },
+    "batteries": {
+      "dependencies": ["gold", "laser-guns"],
+      "display-name": "Guards Have To Buy Ammo",
+      "blurb": "Laser guns run out of battery. Anyone can buy batteries from the marketplace. Batteries are a stackable inventory item. Laser guns get 20 shots per battery."
+    },
+    "tasers": {
+      "dependencies": ["batteries"],
+      "display-name": "Tasers Stun Players",
+      "blurb": "Guards can buy tasers from the marketplace. When shot with a taser, a player will fall on the ground, immobile for 10 seconds with an electricity effect. Workers holding tasers can legally be shot. Tasers take one battery per shot. Guards can tase any Worker they want."
+    },
+    "handcuffs": {
+      "dependencies": ["tasers"],
+      "display-name": "Players Can Control Other Players In Handcuffs",
+      "blurb": "Players can buy handcuffs from the marketplace. Players can ask to put handcuffs on other players, who then say yes/no/nothing. Players that don't respond to the ask will automatically get handcuffs put on them. Innocent workers can legally say no to Guards asking to handcuff them. A player with handcuffs can be 'mounted' by another player, and will automatically follow that player with no agency. Unmounted handcuffed players can move freely, but can't hold items or mount other handcuffed players. Players can 'mount' up to two handcuffed players."
+    },
+    "trading": {
+      "dependencies": ["gold"],
+      "display-name": "Players Can Make Secure Trades",
+      "blurb": "Players can ask to trade inventory items with other players. Players first ask to open the trade, which creates a trading GUI with two inventory areas. Each player can drop/remove items into their area. Players can close the trading deal and nothing happens. Players can click 'accept' to swap items with the other person. If the items in the trading table change after they click 'accept', it automatically 'unaccepts' the trade and they have to click 'accept' again."
+    },
+    "black-market": {
+      "dependencies": ["trading", "laser-guns", "drop-items"],
+      "display-name": "It's Illegal For Guards To Sell Illegal Items To Workers",
+      "blurb": "Guards that give illegal items to Workers can legally be shot within 60 secs of doing so, either by dropping items that get picked up within 60 secs/10 paces, via trade, or placing items in a public/Worker chest."
+    },
+    "guard-recruitment": {
+      "dependencies": ["team-assignment", "gold"],
+      "display-name": "Workers Can Join The Guards",
+      "blurb": "Workers can join the Guards by talking to a static Recruiter NPC outside the mine Checkpoint. If there are too many guards, they pay a gradual application fee. If there aren't enough guards, they get a sign-on bonus. Sign-on bonuses are advertised via screens on the checkpoint. Recruits are immediately given default Guard items. Guards can quit by asking the recruiter and paying an inverse application fee. Quitters are immediately stripped of illegal items."
+    },
+    "uniforms": {
+      "dependencies": ["team-assignment"],
+      "display-name": "Players Can Swap Uniforms",
+      "blurb": "Workers have their own uniform. Guards have their own uniform. Inventories have a uniform slot that can be equipped/unequipped. Uniforms are non-stackable inventory items. If wearing no uniform, a player wears a t-shirt and shorts. It is illegal for a Worker to wear a Guard uniform."
+    },
+    "hats": {
+        "dependencies": ["uniforms"],
+        "display-name": "Players can wear Hats & Helmets"
+    },
+    "personal-appearance": {
+        "dependencies": ["hats"],
+        "display-name": "Key-Cards are also Photo IDs",
+        "blurb": "Upon spawning, players pick between five pre-generated, unique character appearances/name/age combos. Their key-card will include a photo of them in Worker clothes plus their name and age. "
+    },
+    "squad-leaders": {
+      "dependencies": ["guard-recruitment", "key-cards", "uniforms"],
+      "display-name": "Guards Can Buy Squad Leader Rank",
+      "blurb": "Guards can save money to buy Squad Leader position. They earn more money per tax event, their key-cards give access to a special officers' quarters, and they have a special uniform."
     }
   }
 }
